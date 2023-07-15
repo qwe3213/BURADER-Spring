@@ -28,7 +28,6 @@ import com.itwillbs.service.ContractService;
 import com.itwillbs.service.CustomerService;
 import com.itwillbs.service.EmployeeService;
 import com.itwillbs.service.PagingService;
-import com.itwillbs.service.ProductionService;
 
 @Controller
 @RequestMapping(value = "/contract/*")
@@ -190,10 +189,10 @@ public class ContractController {
 	
 	//거래처 검색창
 	@RequestMapping(value="/custFind", method = RequestMethod.GET)
-	public void findCustGET(PagingVO pvo, Model model) throws Exception{
+	public void findCustGET(PagingVO pvo, Model model, ContractVO cvo) throws Exception{
 		logger.debug("@@@@@@@@@@@Controller : 팝업으로 거래처찾기 !!!!!");
 		
-		List<Object> customerList = null;
+		List<ContractVO> customerList = null;
 		
 		pvo = custService.setPageInfoForCustomer(pvo);
 		logger.debug("@@@@@@@@@Controller : {}",pvo);
@@ -202,11 +201,11 @@ public class ContractController {
 		if(pvo.getSelector()!=null && pvo.getSelector()!="") {
 			//검색어가 있을 때 
 			logger.debug("@@@@@@@@@Controller : 검색어가 있을 때입니다");
-			customerList = pageService.getListSearchObjectCustomerVO(pvo);
+			customerList = contService.getListSearchObjectContractVO(cvo);
 		}else {
 			//검색어가 없을 때
 			logger.debug("@@@@@@@@@Controller : 검색어가 없을 때입니다");
-			customerList = pageService.getListPageSizeObjectCustomerVO(pvo);
+			customerList = contService.getListPageSizeObjectContractVO(cvo);
 		}
 		logger.debug("@@@@@@@@@Controller : employeeList={}",customerList);
 	

@@ -81,7 +81,43 @@ public class ContractDAOImpl implements ContractDAO {
 		logger.debug("##########ContractDAO : getProductList 메소드 호출!");
 		return sqlSession.selectList(NAMESPACE+".getProductList");
 	}
-
 	
+	////////////////////////////////페이징처리/////////////////////////////////////
+	//전체 목록 갯수를 가져오기 
+	@Override
+	public int getListAllContractVO() throws Exception {
+		logger.debug("##########ContractDAO : getListAllContractVO 메소드 호출!");
+		return sqlSession.selectOne(NAMESPACE+".getListAllContractVO");
+	}
+
+	//아무조건이 없을 때 전체 목록갯수 가져오기
+	@Override
+	public int getListPageSizeAllContractVO(ContractVO cvo) throws Exception {
+		logger.debug("##########ContractDAO : getListPageSizeAllContractVO 메소드 호출!");
+		return sqlSession.selectOne(NAMESPACE+".getListPageSizeAllContractVO", cvo);
+	}
+
+	//검색어+페이징처리 전체 목록갯수 가져오기 	
+	@Override
+	public int getListSearchAllContractVO(ContractVO cvo) throws Exception {
+		logger.debug("##########ContractDAO : getListSearchAllContractVO 메소드 호출!");
+		return sqlSession.selectOne(NAMESPACE+".getListSearchAllContractVO", cvo);
+	}
+
+	//////////////////////////////////////
+	
+	//아무조건이 없을 때 전체 목록 객체 가져오기
+	public List<ContractVO> getListPageSizeObjectContractVO(ContractVO cvo) throws Exception{
+		logger.debug("##########ContractDAO : getListPageSizeObjectContractVO 메소드 호출!");
+		return sqlSession.selectList(NAMESPACE+".getListPageSizeObjectContractVO", cvo);
+	};
+		
+	//검색어 있을 때 목록 객체 가져오기 	
+	public List<ContractVO> getListSearchObjectContractVO(ContractVO cvo) throws Exception{
+		logger.debug("##########ContractDAO : getListSearchObjectContractVO 메소드 호출!");
+		return sqlSession.selectList(NAMESPACE+".getListSearchObjectContractVO", cvo);
+	};
+		
+	////////////////////////////////페이징처리/////////////////////////////////////
 
 }

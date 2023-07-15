@@ -41,5 +41,26 @@ public interface ContractService {
 
 	//상품목록 가져오기
 	public List<ProductionVO> getProductList () throws Exception;
+	
+	////////////////////////////////페이징처리/////////////////////////////////////
+	//전체 목록 갯수를 가져오기 
+	public int getListAllContractVO()throws Exception;
+	
+	//아무조건이 없을 때 전체 목록갯수 가져오기
+	public int getListPageSizeAllContractVO(ContractVO cvo) throws Exception;
+	
+	//검색어+페이징처리 전체 목록갯수 가져오기 	
+	public int getListSearchAllContractVO(ContractVO cvo)throws Exception;
+	
+	//////////////////////////////////////////
+		
+	//아무조건이 없을 때 전체 목록 객체 가져오기
+	public List<ContractVO> getListPageSizeObjectContractVO(ContractVO cvo) throws Exception;
+	
+	//검색어 있을 때 목록 객체 가져오기 	
+	public List<ContractVO> getListSearchObjectContractVO(ContractVO cvo) throws Exception;
+	
+	////////////////////////////////페이징처리/////////////////////////////////////
+	
 }
 
