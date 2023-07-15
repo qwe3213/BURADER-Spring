@@ -171,7 +171,7 @@ public class ContractServiceImpl implements ContractService {
 
 	//엑셀화일 다운로드
 	@Override
-	public void downExcel(List<Object> contractList, HttpServletResponse response) throws IOException {
+	public void downExcel(List<ContractVO> contractList, HttpServletResponse response) throws IOException {
 		logger.debug("@@@@@@ContractService : 상품코드로 상품정보를 불러옵니다.");
 		logger.debug("@@@@@@ContractService : contractList : {}", contractList);
 		logger.debug("@@@@@@ContractService : contractList.size() : {}", contractList.size());
@@ -208,13 +208,10 @@ public class ContractServiceImpl implements ContractService {
         for (int i = 0; i < contractList.size() ; i++) {
 //    		logger.debug("반복문 시작합니다. ");
 //        	contractList.get(0).get;
-
     		cellNum = 0;
             row = sheet.createRow(rowNum++);
             cell = row.createCell(cellNum++);
             cell.setCellValue(0);
-            cell = row.createCell(cellNum++);
-            cell.setCellValue("학생" + i);
             cell = row.createCell(cellNum++);
             cell.setCellValue("학생" + i);
             cell = row.createCell(cellNum++);

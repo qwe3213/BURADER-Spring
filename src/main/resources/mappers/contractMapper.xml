@@ -53,6 +53,46 @@
 	</insert>
 <!-- cont_id를 out_product테이블에 넣기 -->
 
+<!-- /////////////////////////페이징 처리//////////////////////////////////  -->
+<!--  	전체 리스트 갯수 조회  -->
+	<select id="getListAllContractVO" resultType="_int">
+		SELECT COUNT(*) FROM contract 
+		WHERE cont_status=0
+	</select>
+<!-- 	전체 리스트 갯수 조회  -->
+<!-- 아무조건이 없을 때 목록갯수 가져오기  -->
+	<select id="getListPageSizeAllContractVO" resultType="_int">
+		SELECT COUNT(*) FROM contract 
+		WHERE cont_status=0 
+		limit #{startRow}, #{pageSize} 
+	</select>
+<!-- 아무조건이 없을 때 목록갯수 가져오기  -->
+<!--  	검색어+페이지갯수 제한 전체 목록 갯수 가져오기  -->
+	<select id="getListSearchAllContractVO" resultType="_int">
+		SELECT COUNT(*) FROM contract 
+		WHERE cont_status=0 
+		AND ${selector} LIKE CONCAT('%', #{search}, '%')
+	</select>
+<!--  	검색어+페이지갯수 제한 전체 목록 갯수 가져오기  -->
+
+<!-- 아무조건이 없을 때 목록 배열 가져오기  -->
+		<select id="getListPageSizeObjectContractVO" resultType="ContractVO">
+			SELECT * FROM contract 
+			WHERE cont_status=0 
+			ORDER BY cont_id DESC LIMIT #{startRow}, #{pageSize}
+		</select>
+	<!-- 아무조건이 없을 때 목록갯수 가져오기  -->	
+		
+	<!--  	검색어+페이지갯수 제한 전체 목록 배열 가져오기  -->
+		<select id="getListSearchObjectContractVO" resultType="ContractVO">
+			SELECT * FROM contract 
+			WHERE cont_status=0 
+			AND ${selector} LIKE CONCAT('%', #{search}, '%') 
+			ORDER BY cont_id DESC LIMIT #{startRow}, #{pageSize}
+		</select>
+	<!--  	검색어+페이지갯수 제한 전체 목록 배열 가져오기  -->	
+<!-- /////////////////////////페이징 처리//////////////////////////////////  -->
+
 <!-- 상품 상세정보 조회 -->
 	<select id="getProductInfo" resultType="ProductionVO">
 		select * from product 
@@ -64,6 +104,5 @@
 	<select id="getProductList" resultType="ProductionVO">
 		select * from product
 	</select>
-<!-- 상품목록 가져오기 -->
-	
+<!-- 상품목록 가져오기 -->	
 </mapper>
